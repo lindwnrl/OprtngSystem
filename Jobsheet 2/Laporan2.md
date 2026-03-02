@@ -86,19 +86,79 @@ Kernel  : virtio-pci
 Tentukan device root filesystem dengan findmnt /. Lalu cocokkan dengan
 lsblk -f dan tuliskan tipe filesystem serta UUID-nya.
 
+Device root filesystem : /dev/sdd
+Tipe filesystem        : ext4
+UUID                   : f3d45fb3-06a1-41ec-87b5-c90cfe1727a3
+
 
 ### Latihan 2.C
 Buat file server.log berisi minimal 10 baris dengan variasi kata: INFO,
 WARN, ERROR. Gunakan grep untuk menampilkan hanya baris ERROR.
+
+Full 10 variasi kata : ![alt text](image.png)
+Display kata "Error" : ![alt text](image.png)
+
 ### Latihan 2.D
 Gunakan sed untuk mengganti semua kata server menjadi node pada file
 latihan. Tunjukkan sebelum dan sesudah.
+
+Tampilan full :![alt text](image.png)
+Tampilan sebelum : ![alt text](image.png)
+Tampilan Sesudah : ![alt text](image-1.png)
+
 ### Latihan 2.E
 Gunakan df -h lalu awk untuk menampilkan filesystem yang penggunaan disk
 di atas 70%.
+
+Tampilan ekseskusi : ![alt text](image.png)
 ### Latihan 2.F
 Jalankan sleep 600 &. Temukan PID-nya dengan ps. Hentikan dengan
 SIGTERM. Jelaskan beda SIGTERM vs SIGKILL.
+
+SIGKIlL : ![alt text](image-1.png)
+Fungsi utama:
+Mematikan proses secara paksa (force kill).
+
+Karakteristik:
+
+Tidak bisa ditangkap
+Tidak bisa ditangani
+Tidak bisa diabaikan
+
+Kernel langsung menghentikan proses
+
+Proses tidak diberi kesempatan cleanup
+
+SIGTERM : ![alt text](image.png)
+Fungsi utama:
+Meminta proses untuk berhenti secara normal (graceful shutdown).
+
+Karakteristik:
+
+Dapat ditangkap (catch) oleh program
+Dapat ditangani (handle)
+Dapat diabaikan (ignore)
+
+Proses diberi kesempatan:
+
+menutup file
+menyimpan data
+membersihkan resource
+menutup koneksi
+
 ### Latihan 2.G
 Gunakan systemctl –failed. Jika tidak ada yang gagal, pilih satu service
 aktif (misal ssh) dan tampilkan status serta 30 baris log terakhirnya.
+Hasil systemctl --failed:
+Tidak ada service gagal.
+
+Service aktif yang dipilih:
+cron 
+Tampilan : ![alt text](image.png)
+
+Status service:
+systemctl status cron
+
+30 baris log terakhir:
+journalctl -u cron -n 30
+Tampilan : ![alt text](image.png)

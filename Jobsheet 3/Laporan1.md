@@ -5,4 +5,4 @@
 **Kelas**       :TI 1G
 **No Absen**    :17
 
-![alt text](Jobsheet%203/foto.png)
+![alt text](Jobsheet%203/image.png)

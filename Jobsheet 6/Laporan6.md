@@ -12,9 +12,11 @@ Jalankan ps aux dan amati outputnya:
 
 1. Berapa total proses yang berjalan? Proses apa yang memiliki PID terkecil?
 Terdapat 20 proses yang berjalan setelah command ps -aux dijalankan dan proses dengan PID terkecil ada pada proses root pertama dengan PID 1
+![alt text](<Dokumentasi/PID Terkecil.png>)
 
 2. Jalankan pstree -p dan temukan proses bash Anda. Proses apa yang menjadi induk (PPID) dari bash tersebut?
 Proses yang menjadi Parent PID dari bash tersebut adalah 384
+![alt text](<Dokumentasi/Parent PID.png>)
 
 3. Bandingkan output ps aux dan ps aux -L. Apa perbedaan yang Anda lihat?
 Perbedaan antara ps aux dan ps aux -L adalah ps aux hanya menampilkan proses sedangkan ps aux -L menampilkan proses dan thread di dalamnya sehingga ps aux -L lebih lengkap
@@ -25,14 +27,18 @@ Setelah menjalankan proses ps aux akan terlihat di bagian bawah bahwa proses sle
 
 2. Jalankan beberapa perintah yang berhasil dan yang gagal, lalu catat exit code masing-masing. Pola apa yang Anda temukan?
 Pola yang saya temukan adalah bahwa apabila proses berhasil dijalankan exit code yang keluar adalah 0 sedangkan kalau gagal angkanya adalah selain 0.
+![alt text](<Dokumentasi/Exit Code.png>)
 
 ## Latihan 6.3
 1. Jalankan nice -n 5 sleep 200 & dan verifikasi nilai NI-nya dengan ps.
+![alt text](<Dokumentasi/Nice -n 5.png>)
 
 2. Ubah nilai nice menjadi 10 menggunakan renice, lalu verifikasi kembali.
+![alt text](<Dokumentasi/Renice 10.png>)
 
 3. Coba ubah nilai nice menjadi -5 tanpa sudo. Apa yang terjadi? Mengapa Linux membatasi hal ini untuk user biasa?
 Karena adanya permission yang menghalangi user untuk mengubah nice value menjadi -5,user hanya boleh menaikkan nice value dari 0 - 10
+![alt text](<Dokumentasi/Renice 10.png>)
 
 ## Latihan 6.4
 1. Jalankan sleep 400 &, kirim SIGSTOP, dan amati perubahan  kolom STAT. Kondisi apa yang muncul?
@@ -54,6 +60,7 @@ Program top bisa dijalnkan di background hanya saja tidak menampilkan apa apa di
 ## Latihan 6.6
 1. Gunakan ps aux –sort=%mem untuk menemukan proses yang menggunakan memori paling banyak di VM Anda. Proses apa itu?
 Proses yang memakan memori paling banyak adalah proses root
+![alt text](<Dokumentasi/ps aux sort mem.png>)
 2. Di dalam top, tekan 1 . Apa yang berubah pada tampilan? Mengapa informasi ini berguna?
 Informasi ini berguna karena user bisa melihat kinerja semua core CPU
 3. Di dalam htop, navigasikan ke proses sshd menggunakan tombol panah. Tekan F9 dan amati opsi sinyal yang tersedia.
@@ -62,6 +69,7 @@ Terdapat 16 opsi yang tersedia di dalam pilihannya.
 ## Latihan 6.A
 1. Jalankan ps aux –forest dan temukan proses dengan PID 1. Apa nama dan fungsi proses tersebut dalam sistem Linux modern?
 Proses root ini berfungsi untuk memproses pertama saat boot dan adalah induk semua proses
+![alt text](<Dokumentasi/ps aux forrest.png>)
 2. Hitung berapa proses yang dimiliki oleh user root dan berapa yang dimiliki oleh user Anda. Mengapa root memiliki lebih banyak proses?
 Terdapat 14 proses root dan 5 proses dari user.Hal ini karena root mengatur system sehingga butuh proses lebih intens daripada user itu sendiri
 3. Temukan semua proses yang berada dalam kondisi S. Mengapa sebagian besar proses di sistem berada dalam kondisi ini?
@@ -69,18 +77,24 @@ Proses itu adlah interruptible sleep yang artinya walaupun dalam keadaan sleep p
 
 ## Latihan 6.B
 1. Jalankan tiga perintah sleep dengan durasi 100, 200, dan 300 detik di background. Verifikasi ketiganya dengan jobs.
+![alt text](<Dokumentasi/sleep 100 200 300.png>)
 
 2. Bawa job kedua ke foreground, jeda dengan Ctrl+Z , lalu kembalikan ke background dengan bg.
+![alt text](<Dokumentasi/fg %2.png>)
 
 3. Hentikan job pertama dengan kill %1. Tampilkan kembali daftar job. Berapa job yang tersisa?
 Ada 2 jobs tersisa yang msih berjalan di belakang layar sedangkan 1 lainnya dengan status terminated
 
+
 ## Latihan 6.C
 1. Jalankan dua proses sleep: satu dengan nice +5 dan satu dengan nice +15. Verifikasi nilai NI keduanya dengan ps.
+![alt text](<Dokumentasi/Cek NI.png>)
 
 2. Gunakan renice untuk mengubah nice proses pertama menjadi +10.Proses mana yang kini lebih diprioritaskan scheduler?
 Tidak ada yang diprioritaskan karena Scheduler Linux akan membagi CPU secara adil dan kedua proses ini mendapat jatah waktu yang sama
+
 3. Kirim SIGSTOP ke salah satu proses, verifikasi kondisi T-nya, lalu kirim SIGCONT. Akhiri semua proses percobaan dengan pkill sleep
+![alt text](Dokumentasi/kill.png)
 
 
 
